@@ -1,0 +1,39 @@
+{
+  "name": "server",
+  "author": "Lee Mashanlo",
+  "description": "",
+  "license": "ISC",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsup src/index.ts --watch --onSuccess \"nodemon dist/index.js\"",
+    "build": "tsup",
+    "start": "node dist/index.js",
+    "lint": "eslint . --fix",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.1",
+    "zod": "^3.25.75"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "eslint": "^9.30.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^16.3.0",
+    "nodemon": "^3.1.10",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.1"
+  }
+}
