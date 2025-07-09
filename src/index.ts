@@ -7,7 +7,9 @@ import mongoose from 'mongoose';
 import path from 'path';
 
 import { errorMiddleware } from './middlewares/error';
+import { addressRouter } from './routes/address';
 import { authRouter } from './routes/auth';
+import { categoryRouter } from './routes/category';
 import { mediaRouter } from './routes/media';
 import { optionRouter } from './routes/option';
 import { productRouter } from './routes/product';
@@ -19,22 +21,16 @@ app.use( cookieParser() );
 app.use( express.json() );
 
 app.use( '/uploads', express.static( path.join( 'uploads' ) ) );
-
+app.use( '/media', mediaRouter );
 app.use( '/auth', authRouter );
 app.use( '/user', userRouter );
+app.use( '/address', addressRouter );
 app.use( '/product', productRouter );
 app.use( '/option', optionRouter );
-app.use( '/media', mediaRouter );
+app.use( '/category', categoryRouter );
 
 app.use( errorMiddleware );
 
-const start = async () => {
-  try {
-    await mongoose.connect( process.env.MONGODB_URI || '' );
-    app.listen( process.env.PORT, () => console.log( `Server is running on port ${process.env.PORT}` ) );
-  } catch ( error ) {
-    console.log( error );
-  }
-};
+mongoose.connect( process.env.MONGODB_URI || '' );
 
-start();
+app.listen( process.env.PORT, () => console.log( `Server is running on port ${process.env.PORT}` ) );

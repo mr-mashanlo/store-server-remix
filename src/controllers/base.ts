@@ -11,7 +11,8 @@ export class BaseController<T> {
   getOne: RequestHandler = async ( req, res, next ) => {
     try {
       const id = req.params.id;
-      const document = await this.service.getOne( { _id: id } );
+      const option = JSON.parse( decodeURIComponent( String( req.query.option || '%7B%7D' ) ) );
+      const document = await this.service.getOne( { _id: id }, option );
       res.json( document );
     } catch ( error ) {
       next( error );
@@ -20,9 +21,9 @@ export class BaseController<T> {
 
   getMany: RequestHandler = async ( req, res, next ) => {
     try {
-      const filter = req.query.filter || '%7B%7D';
-      const query = JSON.parse( decodeURIComponent( String( filter ) ) );
-      const documents = await this.service.getMany( query );
+      const query = JSON.parse( decodeURIComponent( String( req.query.query || '%7B%7D' ) ) );
+      const option = JSON.parse( decodeURIComponent( String( req.query.option || '%7B%7D' ) ) );
+      const documents = await this.service.getMany( query, option );
       res.json( documents );
     } catch ( error ) {
       next( error );
@@ -41,8 +42,7 @@ export class BaseController<T> {
 
   delete: RequestHandler = async ( req, res, next ) => {
     try {
-      const filter = req.query.filter || '%7B%7D';
-      const query = JSON.parse( decodeURIComponent( String( filter ) ) );
+      const query = JSON.parse( decodeURIComponent( String( req.query.query || '%7B%7D' ) ) );
       const document = await this.service.delete( query );
       res.json( document );
     } catch ( error ) {
@@ -52,8 +52,7 @@ export class BaseController<T> {
 
   update: RequestHandler = async ( req, res, next ) => {
     try {
-      const filter = req.query.filter || '%7B%7D';
-      const query = JSON.parse( decodeURIComponent( String( filter ) ) );
+      const query = JSON.parse( decodeURIComponent( String( req.query.query || '%7B%7D' ) ) );
       const body = req.body;
       const document = await this.service.update( query, body );
       res.json( document );

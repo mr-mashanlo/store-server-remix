@@ -1,10 +1,10 @@
-import { DeleteResult, FilterQuery, Model, UpdateQuery, UpdateResult } from 'mongoose';
+import { DeleteResult, FilterQuery, Model, QueryOptions, UpdateQuery, UpdateResult } from 'mongoose';
 
 export interface BaseServiceInterface<T> {
 
-  getOne( query: FilterQuery<T> ): Promise<T | null>
+  getOne( query: FilterQuery<T>, options?: QueryOptions ): Promise<T | null>
 
-  getMany( query: FilterQuery<T> ): Promise<T[]>
+  getMany( query: FilterQuery<T>, options?: QueryOptions ): Promise<T[]>
 
   create( data: Partial<T> ): Promise<T>
 
@@ -20,9 +20,9 @@ export class BaseService<T> implements BaseServiceInterface<T> {
 
   constructor( model: Model<T> ) { this.model = model; };
 
-  getOne = async ( query: FilterQuery<T> ) => await this.model.findOne( query );
+  getOne = async ( query: FilterQuery<T>, options?: QueryOptions ) => await this.model.findOne( query ).setOptions( options || {} );
 
-  getMany = async ( query: FilterQuery<T> ) => await this.model.find( query );
+  getMany = async ( query: FilterQuery<T>, options: QueryOptions ) => await this.model.find( query ).setOptions( options || {} );
 
   create = async ( data: Partial<T> ) => await this.model.create( data );
 
