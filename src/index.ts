@@ -12,6 +12,7 @@ import { authRouter } from './routes/auth';
 import { categoryRouter } from './routes/category';
 import { mediaRouter } from './routes/media';
 import { optionRouter } from './routes/option';
+import { orderRouter } from './routes/order';
 import { productRouter } from './routes/product';
 import { userRouter } from './routes/user';
 
@@ -28,6 +29,7 @@ app.use( '/address', addressRouter );
 app.use( '/product', productRouter );
 app.use( '/option', optionRouter );
 app.use( '/category', categoryRouter );
+app.use( '/order', orderRouter );
 
 app.use( errorMiddleware );
 
