@@ -10,7 +10,7 @@ const router = Router();
 const service = new BaseService<UserType>( UserModel );
 const controller = new BaseController<UserType>( service );
 
-router.put( '/', controller.update );
+router.put( '/', authMiddleware, controller.update );
 router.get( '/', authMiddleware, controller.getMany );
 router.get( '/:id', authMiddleware, controller.getOne );
 
