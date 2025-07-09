@@ -4,9 +4,12 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
+import path from 'path';
 
 import { errorMiddleware } from './middlewares/error';
 import { authRouter } from './routes/auth';
+import { mediaRouter } from './routes/media';
+import { optionRouter } from './routes/option';
 import { productRouter } from './routes/product';
 import { userRouter } from './routes/user';
 
@@ -15,9 +18,13 @@ app.use( cors( { credentials: true, origin: [ process.env.FRONT_URI || '' ] } ) 
 app.use( cookieParser() );
 app.use( express.json() );
 
+app.use( '/uploads', express.static( path.join( 'uploads' ) ) );
+
 app.use( '/auth', authRouter );
 app.use( '/user', userRouter );
 app.use( '/product', productRouter );
+app.use( '/option', optionRouter );
+app.use( '/media', mediaRouter );
 
 app.use( errorMiddleware );
 

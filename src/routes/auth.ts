@@ -1,4 +1,4 @@
-import Router from 'express';
+import { Router } from 'express';
 
 import { AuthController } from '@/controllers/auth';
 import { authMiddleware } from '@/middlewares/auth';
@@ -6,8 +6,7 @@ import { UserModel } from '@/models/user';
 import { AuthService } from '@/services/auth';
 import { UserType } from '@/types/user';
 
-// @ts-expect-error - need to fix type
-const router = new Router();
+const router = Router();
 const service = new AuthService<UserType>( UserModel );
 const controller = new AuthController( service );
 

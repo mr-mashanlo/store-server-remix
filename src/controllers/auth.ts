@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { RequestHandler } from 'express';
 
 import { AuthServiceInterface } from '@/services/auth';
 import { UserType } from '@/types/user';
@@ -14,7 +14,7 @@ export class AuthController {
 
   constructor( service: AuthServiceInterface<UserType> ) { this.service = service; };
 
-  signIn = async ( req: Request, res: Response, next: NextFunction ) => {
+  signIn: RequestHandler = async ( req, res, next ) => {
     try {
       const body = req.body;
       const validatedInputData = validateUserData( body );
@@ -23,13 +23,13 @@ export class AuthController {
       comparePasswords( validatedInputData.password, document.password );
       const token = generateToken( { id: document._id } );
       saveAuthCookie( res, token );
-      return res.json( { id: document._id, token } );
+      res.json( { id: document._id, token } );
     } catch ( error ) {
       next( error );
     }
   };
 
-  signUp = async ( req: Request, res: Response, next: NextFunction ) => {
+  signUp: RequestHandler = async ( req, res, next ) => {
     try {
       const body = req.body;
       const validatedInputData = validateUserData( body );
@@ -39,28 +39,28 @@ export class AuthController {
       const createdDocument = await this.service.signUp( { email: validatedInputData.email, password } );
       const token = generateToken( { id: createdDocument._id } );
       saveAuthCookie( res, token );
-      return res.json( { id: createdDocument._id, token } );
+      res.json( { id: createdDocument._id, token } );
     } catch ( error ) {
       next( error );
     }
   };
 
-  signOut = async ( req: Request, res: Response, next: NextFunction ) => {
+  signOut: RequestHandler = async ( req, res, next ) => {
     try {
       deleteAuthCookie( res );
-      return res.json( { ok: true } );
+      res.json( { ok: true } );
     } catch ( error ) {
       next( error );
     }
   };
 
-  refresh = async ( req: Request, res: Response, next: NextFunction ) => {
+  refresh: RequestHandler = async ( req, res, next ) => {
     try {
       const token = req.cookies.token;
       const body = validateToken( token );
       const createdToken = generateToken( { id: body.id } );
       saveAuthCookie( res, createdToken );
-      return res.json( { id: body.id, token: createdToken } );
+      res.json( { id: body.id, token: createdToken } );
     } catch ( error ) {
       next( error );
     }

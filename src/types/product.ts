@@ -1,17 +1,7 @@
 import z from 'zod';
 
-const ImageZod = z.object( {
-  _id: z.string(),
-  url: z.string(),
-  alt: z.string()
-} );
-
-const OptionZod = z.object( {
-  _id: z.string(),
-  name: z.string(),
-  price: z.number(),
-  image: ImageZod
-} );
+import { ImageZod } from './image';
+import { OptionZod } from './option';
 
 export const ProductZod = z.object( {
   _id: z.string(),

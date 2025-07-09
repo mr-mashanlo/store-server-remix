@@ -1,8 +1,11 @@
 import { model, Schema } from 'mongoose';
 
-export const ImageSchema = new Schema( {
-  url: { type: String, require: true },
-  alt: { type: String, require: true }
+import { ImageType } from '@/types/image';
+
+export const ImageSchema = new Schema<ImageType>( {
+  name: { type: String, require: true },
+  path: { type: String, require: true },
+  alt: { type: String }
 } );
 
 export const ImageModel = model( 'Image', ImageSchema );
