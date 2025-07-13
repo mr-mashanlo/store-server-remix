@@ -10,9 +10,9 @@ export class BaseController<T> {
 
   getOne: RequestHandler = async ( req, res, next ) => {
     try {
-      const id = req.params.id;
+      const query = JSON.parse( decodeURIComponent( String( req.query.query || '%7B%7D' ) ) );
       const option = JSON.parse( decodeURIComponent( String( req.query.option || '%7B%7D' ) ) );
-      const document = await this.service.getOne( { _id: id }, option );
+      const document = await this.service.getOne( query, option );
       res.json( document );
     } catch ( error ) {
       next( error );
@@ -52,8 +52,7 @@ export class BaseController<T> {
 
   update: RequestHandler = async ( req, res, next ) => {
     try {
-      const query = JSON.parse( decodeURIComponent( String( req.query.query || '%7B%7D' ) ) );
-      const body = req.body;
+      const { query, body } = req.body;
       const document = await this.service.update( query, body );
       res.json( document );
     } catch ( error ) {
