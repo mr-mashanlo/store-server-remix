@@ -1,4 +1,4 @@
-import { DeleteResult, FilterQuery, Model, QueryOptions, UpdateQuery, UpdateResult } from 'mongoose';
+import { DeleteResult, FilterQuery, Model, QueryOptions, UpdateQuery } from 'mongoose';
 
 export interface BaseServiceInterface<T> {
 
@@ -10,7 +10,7 @@ export interface BaseServiceInterface<T> {
 
   delete( query: FilterQuery<T> ): Promise<DeleteResult>
 
-  update( query: FilterQuery<T>, data: UpdateQuery<T> ): Promise<UpdateResult>
+  update( query: FilterQuery<T>, data: UpdateQuery<T> ): Promise<T | null>
 
 }
 
@@ -28,6 +28,6 @@ export class BaseService<T> implements BaseServiceInterface<T> {
 
   delete = async ( query: FilterQuery<T> ) => await this.model.deleteMany( query );
 
-  update = async ( query: FilterQuery<T>, data: UpdateQuery<T> ) => await this.model.updateOne( query, data );
+  update = async ( query: FilterQuery<T>, data: UpdateQuery<T> ) => await this.model.findOneAndUpdate( query, data );
 
 };
