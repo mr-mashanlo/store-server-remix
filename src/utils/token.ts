@@ -12,3 +12,8 @@ export const validateToken = ( token: string ): CustomJwtPayload => {
   // @ts-expect-error - need to fix type
   return jwt.verify( token, process.env.SECRET_KEY || '', ( error, decoded ) => decoded );
 };
+
+export const decodeToken = ( token: string ): { id: string, iat: number, exp: number } => {
+  // @ts-expect-error - need to fix type
+  return jwt.decode( token );
+};
