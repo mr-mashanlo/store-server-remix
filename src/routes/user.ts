@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { BaseController } from '@/controllers/base';
+import { UserController } from '@/controllers/user';
 import { authMiddleware } from '@/middlewares/auth';
 import { UserModel } from '@/models/user';
 import { BaseService } from '@/services/base';
@@ -8,12 +8,10 @@ import { UserType } from '@/types/user';
 
 const router = Router();
 const service = new BaseService<UserType>( UserModel );
-const controller = new BaseController<UserType>( service );
+const controller = new UserController<UserType>( service );
 
-router.post( '/', authMiddleware, controller.create );
 router.delete( '/', authMiddleware, controller.delete );
 router.put( '/', authMiddleware, controller.update );
-router.get( '/', authMiddleware, controller.getMany );
-router.get( '/:id', authMiddleware, controller.getOne );
+router.get( '/me', authMiddleware, controller.getOne );
 
 export { router as userRouter };
