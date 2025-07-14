@@ -2,13 +2,13 @@ import { DeleteResult, FilterQuery, Model, QueryOptions, UpdateQuery } from 'mon
 
 export interface BaseServiceInterface<T> {
 
-  getOne( query: FilterQuery<T>, options?: QueryOptions ): Promise<T | null>
-
-  getMany( query: FilterQuery<T>, options?: QueryOptions ): Promise<T[]>
-
   create( data: Partial<T> ): Promise<T>
 
   delete( query: FilterQuery<T> ): Promise<DeleteResult>
+
+  getMany( query: FilterQuery<T>, options?: QueryOptions ): Promise<T[]>
+
+  getOne( query: FilterQuery<T>, options?: QueryOptions ): Promise<T | null>
 
   update( query: FilterQuery<T>, data: UpdateQuery<T> ): Promise<T | null>
 
@@ -20,14 +20,14 @@ export class BaseService<T> implements BaseServiceInterface<T> {
 
   constructor( model: Model<T> ) { this.model = model; };
 
-  getOne = async ( query: FilterQuery<T>, options?: QueryOptions ) => await this.model.findOne( query ).setOptions( options || {} );
-
-  getMany = async ( query: FilterQuery<T>, options: QueryOptions ) => await this.model.find( query ).setOptions( options || {} );
-
   create = async ( data: Partial<T> ) => await this.model.create( data );
 
   delete = async ( query: FilterQuery<T> ) => await this.model.deleteMany( query );
 
-  update = async ( query: FilterQuery<T>, data: UpdateQuery<T> ) => await this.model.findOneAndUpdate( query, data );
+  getMany = async ( query: FilterQuery<T>, options: QueryOptions ) => await this.model.find( query ).setOptions( options || {} );
+
+  getOne = async ( query: FilterQuery<T>, options?: QueryOptions ) => await this.model.findOne( query ).setOptions( options || {} );
+
+  update = async ( query: FilterQuery<T>, data: UpdateQuery<T> ) => await this.model.findOneAndUpdate( query, data, { new: true } );
 
 };
