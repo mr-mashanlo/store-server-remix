@@ -5,7 +5,7 @@ import { UserType } from '@/types/user';
 import { deleteAuthCookie, saveAuthCookie } from '@/utils/cookie';
 import { CustomError } from '@/utils/error';
 import { comparePasswords, hashPassword } from '@/utils/password';
-import { generateToken, validateToken } from '@/utils/token';
+import { decodeToken, generateToken } from '@/utils/token';
 import { validateUserData } from '@/utils/user-validator';
 
 export class AuthController {
@@ -57,7 +57,7 @@ export class AuthController {
   refresh: RequestHandler = async ( req, res, next ) => {
     try {
       const token = req.cookies.token;
-      const body = validateToken( token );
+      const body = decodeToken( token );
       const createdToken = generateToken( { id: body.id } );
       saveAuthCookie( res, createdToken );
       res.json( { id: body.id, token: createdToken } );

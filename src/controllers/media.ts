@@ -12,27 +12,6 @@ export class MediaController {
 
   constructor( service: MediaServiceInterface<ImageType> ) { this.service = service; };
 
-  getOne: RequestHandler = async ( req, res, next ) => {
-    try {
-      const id = req.params.id;
-      const document = await this.service.getOne( { _id: id } );
-      res.json( document );
-    } catch ( error ) {
-      next( error );
-    }
-  };
-
-  getMany: RequestHandler = async ( req, res, next ) => {
-    try {
-      const filter = req.query.filter || '%7B%7D';
-      const query = JSON.parse( decodeURIComponent( String( filter ) ) );
-      const documents = await this.service.getMany( query );
-      res.json( documents );
-    } catch ( error ) {
-      next( error );
-    }
-  };
-
   create: RequestHandler = async ( req, res, next ) => {
     try {
       const file = req.file;
@@ -52,6 +31,27 @@ export class MediaController {
       const deletedDocument = await this.service.delete( { _id: id } );
       fs.unlinkSync( path.resolve( document.path ) );
       res.json( deletedDocument );
+    } catch ( error ) {
+      next( error );
+    }
+  };
+
+  getMany: RequestHandler = async ( req, res, next ) => {
+    try {
+      const filter = req.query.filter || '%7B%7D';
+      const query = JSON.parse( decodeURIComponent( String( filter ) ) );
+      const documents = await this.service.getMany( query );
+      res.json( documents );
+    } catch ( error ) {
+      next( error );
+    }
+  };
+
+  getOne: RequestHandler = async ( req, res, next ) => {
+    try {
+      const id = req.params.id;
+      const document = await this.service.getOne( { _id: id } );
+      res.json( document );
     } catch ( error ) {
       next( error );
     }

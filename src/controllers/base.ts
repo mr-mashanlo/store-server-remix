@@ -8,9 +8,29 @@ export class BaseController<T> {
 
   constructor( service: BaseServiceInterface<T> ) { this.service = service; };
 
-  getOne: RequestHandler = async ( req, res, next ) => {
+  create: RequestHandler = async ( req, res, next ) => {
+    try {
+      const body = req.body;
+      const document = await this.service.create( body );
+      res.json( document );
+    } catch ( error ) {
+      next( error );
+    }
+  };
+
+  delete: RequestHandler = async ( req, res, next ) => {
     try {
       const query = JSON.parse( decodeURIComponent( String( req.query.query || '%7B%7D' ) ) );
+      const document = await this.service.delete( query );
+      res.json( document );
+    } catch ( error ) {
+      next( error );
+    }
+  };
+
+  getByID: RequestHandler = async ( req, res, next ) => {
+    try {
+      const query = { _id: req.params.id };
       const option = JSON.parse( decodeURIComponent( String( req.query.option || '%7B%7D' ) ) );
       const document = await this.service.getOne( query, option );
       res.json( document );
@@ -30,20 +50,11 @@ export class BaseController<T> {
     }
   };
 
-  create: RequestHandler = async ( req, res, next ) => {
-    try {
-      const body = req.body;
-      const document = await this.service.create( body );
-      res.json( document );
-    } catch ( error ) {
-      next( error );
-    }
-  };
-
-  delete: RequestHandler = async ( req, res, next ) => {
+  getOne: RequestHandler = async ( req, res, next ) => {
     try {
       const query = JSON.parse( decodeURIComponent( String( req.query.query || '%7B%7D' ) ) );
-      const document = await this.service.delete( query );
+      const option = JSON.parse( decodeURIComponent( String( req.query.option || '%7B%7D' ) ) );
+      const document = await this.service.getOne( query, option );
       res.json( document );
     } catch ( error ) {
       next( error );
