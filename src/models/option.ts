@@ -4,6 +4,7 @@ import autopopulate from 'mongoose-autopopulate';
 import { OptionType } from '@/types/option';
 
 export const OptionSchema = new Schema<OptionType>( {
+  product: { type: Schema.Types.ObjectId, ref: 'Product', require: true },
   name: { type: String, require: true },
   price: { type: Number, require: true },
   image: { type: Schema.Types.ObjectId, ref: 'Image', require: true, autopopulate: true }

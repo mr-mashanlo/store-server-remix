@@ -6,6 +6,7 @@ import { OptionZod } from './option';
 
 export const ProductZod = z.object( {
   _id: z.string(),
+  uid: z.string(),
   name: z.string(),
   excerpt: z.string(),
   description: z.string(),

@@ -14,6 +14,6 @@ router.post( '/', authMiddleware, controller.create );
 router.delete( '/', authMiddleware, controller.delete );
 router.put( '/', authMiddleware, controller.update );
 router.get( '/', controller.getMany );
-router.get( '/:id', controller.getOne );
+router.get( '/:id', controller.getByID );
 
 export { router as optionRouter };

@@ -1,6 +1,8 @@
-import { DeleteResult, FilterQuery, Model, QueryOptions, UpdateQuery } from 'mongoose';
+import { DeleteResult, FilterQuery, Model, PipelineStage, QueryOptions, UpdateQuery } from 'mongoose';
 
 export interface BaseServiceInterface<T> {
+
+  aggregate( pipline: PipelineStage[] ): Promise<T[]>
 
   create( data: Partial<T> ): Promise<T>
 
@@ -19,6 +21,8 @@ export class BaseService<T> implements BaseServiceInterface<T> {
   private model: Model<T>;
 
   constructor( model: Model<T> ) { this.model = model; };
+
+  aggregate = async ( pipline: PipelineStage[] ) => await this.model.aggregate( pipline );
 
   create = async ( data: Partial<T> ) => await this.model.create( data );
 
