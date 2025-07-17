@@ -1,9 +1,11 @@
 import { model, Schema } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
+import { uid } from 'uid';
 
 import { OptionType } from '@/types/option';
 
 export const OptionSchema = new Schema<OptionType>( {
+  uid: { type: String, default: () => uid( 6 ) },
   product: { type: Schema.Types.ObjectId, ref: 'Product', require: true },
   name: { type: String, require: true },
   price: { type: Number, require: true },

@@ -5,6 +5,7 @@ import { ImageZod } from './image';
 
 export const OptionZod = z.object( {
   _id: z.string(),
+  uid: z.string(),
   name: z.string(),
   value: z.string(),
   price: z.number(),
