@@ -13,6 +13,6 @@ const controller = new UserController<OrderType>( service );
 router.post( '/', authMiddleware, controller.create );
 router.put( '/', authMiddleware, controller.update );
 router.get( '/', authMiddleware, controller.getMany );
-router.get( '/me', authMiddleware, controller.getOne );
+router.get( '/:id', authMiddleware, controller.getByID );
 
 export { router as orderRouter };
