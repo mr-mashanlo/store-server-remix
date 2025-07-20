@@ -6,7 +6,7 @@ export interface MediaServiceInterface<T> {
 
   getMany( query: FilterQuery<T> ): Promise<T[]>
 
-  create( file: Express.Multer.File, alt: string ): Promise<T>
+  create( body: Partial<T> ): Promise<T>
 
   delete( query: FilterQuery<T> ): Promise<DeleteResult>
 
@@ -22,7 +22,7 @@ export class MediaService<T> implements MediaServiceInterface<T> {
 
   getMany = async ( query: FilterQuery<T> ) => await this.model.find( query );
 
-  create = async ( file: Express.Multer.File, alt: string ) => await this.model.create( { name: file.filename, path: file.path, alt } );
+  create = async ( body: Partial<T> ) => await this.model.create( body );
 
   delete = async ( query: FilterQuery<T> ) => await this.model.deleteMany( query );
 

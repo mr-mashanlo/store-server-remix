@@ -15,8 +15,7 @@ export class MediaController {
   create: RequestHandler = async ( req, res, next ) => {
     try {
       const file = req.file;
-      const alt = req.body.alt || '';
-      const document = await this.service.create( file!, alt );
+      const document = await this.service.create( { name: file!.filename, path: file!.path, alt: req.body.alt || '' } );
       res.json( document );
     } catch ( error ) {
       next( error );
