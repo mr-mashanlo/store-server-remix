@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-import { BaseController } from '@/controllers/base.js';
-import { authMiddleware } from '@/middlewares/auth.js';
-import { ProductModel } from '@/models/product.js';
-import { BaseService } from '@/services/base.js';
-import { ProductType } from '@/types/product.js';
+import { BaseController } from '../controllers/base.js';
+import { authMiddleware } from '../middlewares/auth.js';
+import { ProductModel } from '../models/product.js';
+import { BaseService } from '../services/base.js';
+import { ProductType } from '../types/product.js';
 
 const router = Router();
 const service = new BaseService<ProductType>( ProductModel );

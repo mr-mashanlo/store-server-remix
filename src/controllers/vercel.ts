@@ -1,8 +1,8 @@
 import { del, put } from '@vercel/blob';
 import { RequestHandler } from 'express';
 
-import { MediaServiceInterface } from '@/services/media.js';
-import { ImageType } from '@/types/image.js';
+import { MediaServiceInterface } from '../services/media.js';
+import { ImageType } from '../types/image.js';
 
 export class MediaController {
 

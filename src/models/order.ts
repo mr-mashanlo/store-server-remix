@@ -2,7 +2,7 @@ import { model, Schema } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
 import { uid } from 'uid';
 
-import { OrderType } from '@/types/order.js';
+import { OrderType } from '../types/order.js';
 
 export const OrderSchema = new Schema<OrderType>( {
   uid: { type: String, default: () => uid( 6 ) },

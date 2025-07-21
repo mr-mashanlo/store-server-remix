@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 
-import { BaseServiceInterface } from '@/services/base.js';
+import { BaseServiceInterface } from '../services/base.js';
 
 export class BaseController<T> {
 

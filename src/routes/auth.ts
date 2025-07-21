@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-import { AuthController } from '@/controllers/auth.js';
-import { authMiddleware } from '@/middlewares/auth.js';
-import { UserModel } from '@/models/user.js';
-import { AuthService } from '@/services/auth.js';
-import { UserType } from '@/types/user.js';
+import { AuthController } from '../controllers/auth.js';
+import { authMiddleware } from '../middlewares/auth.js';
+import { UserModel } from '../models/user.js';
+import { AuthService } from '../services/auth.js';
+import { UserType } from '../types/user.js';
 
 const router = Router();
 const service = new AuthService<UserType>( UserModel );

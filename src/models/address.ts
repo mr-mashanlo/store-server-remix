@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-import { AddressType } from '@/types/address.js';
+import { AddressType } from '../types/address.js';
 
 export const AddressSchema = new Schema<AddressType>( {
   user: { type: Schema.Types.ObjectId, ref: 'User', require: true },

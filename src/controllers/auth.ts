@@ -1,12 +1,12 @@
 import { RequestHandler } from 'express';
 
-import { AuthServiceInterface } from '@/services/auth.js';
-import { UserType } from '@/types/user.js';
-import { deleteAuthCookie, saveAuthCookie } from '@/utils/cookie.js';
-import { CustomError } from '@/utils/error.js';
-import { comparePasswords, hashPassword } from '@/utils/password.js';
-import { decodeToken, generateToken } from '@/utils/token.js';
-import { validateUserData } from '@/utils/user-validator.js';
+import { AuthServiceInterface } from '../services/auth.js';
+import { UserType } from '../types/user.js';
+import { deleteAuthCookie, saveAuthCookie } from '../utils/cookie.js';
+import { CustomError } from '../utils/error.js';
+import { comparePasswords, hashPassword } from '../utils/password.js';
+import { decodeToken, generateToken } from '../utils/token.js';
+import { validateUserData } from '../utils/user-validator.js';
 
 export class AuthController {
 

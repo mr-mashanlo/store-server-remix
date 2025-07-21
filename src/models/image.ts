@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-import { ImageType } from '@/types/image.js';
+import { ImageType } from '../types/image.js';
 
 export const ImageSchema = new Schema<ImageType>( {
   name: { type: String, require: true },

@@ -2,7 +2,7 @@ import { model, Schema } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
 import { uid } from 'uid';
 
-import { ProductType } from '@/types/product.js';
+import { ProductType } from '../types/product.js';
 
 export const ProductSchema = new Schema<ProductType>( {
   uid: { type: String, default: () => uid( 6 ) },
