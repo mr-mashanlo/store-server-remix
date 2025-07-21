@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { MediaController } from '../controllers/media.js';
+import { MediaController } from '../controllers/vercel.js';
 import { authMiddleware } from '../middlewares/auth.js';
 import { vercelMiddleware } from '../middlewares/vercel.js';
 import { ImageModel } from '../models/image.js';
@@ -11,7 +11,6 @@ const router = Router();
 const service = new MediaService<ImageType>( ImageModel );
 const controller = new MediaController( service );
 
-router.get( '/', controller.getMany );
 router.post( '/', authMiddleware, vercelMiddleware, controller.create );
 router.delete( '/:id', authMiddleware, controller.delete );
 
