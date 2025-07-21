@@ -1,6 +1,6 @@
 import z from 'zod';
 
-import { AddressZod } from './address';
+import { AddressZod } from './address.js';
 
 export const UserInputZod = z.object( {
   email: z.string().email( { message: 'Invalid email address' } ),

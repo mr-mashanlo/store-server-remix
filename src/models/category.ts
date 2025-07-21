@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-import { CategoryType } from '@/types/category';
+import { CategoryType } from '@/types/category.js';
 
 export const CategorySchema = new Schema<CategoryType>( {
   name: { type: String, require: true },

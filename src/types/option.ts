@@ -1,7 +1,7 @@
 import { SchemaDefinitionProperty } from 'mongoose';
 import z from 'zod';
 
-import { ImageZod } from './image';
+import { ImageZod } from './image.js';
 
 export const OptionZod = z.object( {
   _id: z.string(),

@@ -1,8 +1,8 @@
 import z from 'zod';
 
-import { CategoryZod } from './category';
-import { ImageZod } from './image';
-import { OptionZod } from './option';
+import { CategoryZod } from './category.js';
+import { ImageZod } from './image.js';
+import { OptionZod } from './option.js';
 
 export const ProductZod = z.object( {
   _id: z.string(),

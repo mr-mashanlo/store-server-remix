@@ -1,12 +1,12 @@
 import { Router } from 'express';
 
-import { MediaController } from '@/controllers/media';
-import { authMiddleware } from '@/middlewares/auth';
-import { mediaMiddleware } from '@/middlewares/media';
-import { vercelMiddleware } from '@/middlewares/vercel';
-import { ImageModel } from '@/models/image';
-import { MediaService } from '@/services/media';
-import { ImageType } from '@/types/image';
+import { MediaController } from '@/controllers/media.js';
+import { authMiddleware } from '@/middlewares/auth.js';
+import { mediaMiddleware } from '@/middlewares/media.js';
+import { vercelMiddleware } from '@/middlewares/vercel.js';
+import { ImageModel } from '@/models/image.js';
+import { MediaService } from '@/services/media.js';
+import { ImageType } from '@/types/image.js';
 
 const router = Router();
 const service = new MediaService<ImageType>( ImageModel );

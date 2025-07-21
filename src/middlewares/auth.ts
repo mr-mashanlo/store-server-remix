@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { CustomError } from '@/utils/error';
-import { decodeToken } from '@/utils/token';
+import { CustomError } from '@/utils/error.js';
+import { decodeToken } from '@/utils/token.js';
 
 export const authMiddleware = async ( req: Request, res: Response, next: NextFunction ) => {
   try {

@@ -1,7 +1,7 @@
 import z from 'zod';
 
-import { OptionZod } from './option';
-import { UserZod } from './user';
+import { OptionZod } from './option.js';
+import { UserZod } from './user.js';
 
 export const OrderZod = z.object( {
   _id: z.string(),

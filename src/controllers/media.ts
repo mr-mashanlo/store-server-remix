@@ -2,9 +2,9 @@ import { RequestHandler } from 'express';
 import fs from 'fs';
 import path from 'path';
 
-import { MediaServiceInterface } from '@/services/media';
-import { ImageType } from '@/types/image';
-import { CustomError } from '@/utils/error';
+import { MediaServiceInterface } from '@/services/media.js';
+import { ImageType } from '@/types/image.js';
+import { CustomError } from '@/utils/error.js';
 
 export class MediaController {
 

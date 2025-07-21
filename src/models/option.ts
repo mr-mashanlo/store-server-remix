@@ -2,7 +2,7 @@ import { model, Schema } from 'mongoose';
 import autopopulate from 'mongoose-autopopulate';
 import { uid } from 'uid';
 
-import { OptionType } from '@/types/option';
+import { OptionType } from '@/types/option.js';
 
 export const OptionSchema = new Schema<OptionType>( {
   uid: { type: String, default: () => uid( 6 ) },

@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 
-import { CustomError } from './error';
+import { CustomError } from './error.js';
 
 export const hashPassword = ( password: string ) => {
   return bcrypt.hashSync( password, 7 );

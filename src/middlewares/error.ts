@@ -1,6 +1,6 @@
 import { ErrorRequestHandler } from 'express';
 
-import { CustomError } from '@/utils/error';
+import { CustomError } from '@/utils/error.js';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const errorMiddleware: ErrorRequestHandler = ( err, req, res, next ): void => {
