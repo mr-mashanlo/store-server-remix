@@ -11,7 +11,8 @@
     "build": "tsup",
     "start": "node dist/index.js",
     "lint": "eslint . --fix",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "vercel-build": "echo hello"
   },
   "dependencies": {
     "@vercel/blob": "^1.1.1",
