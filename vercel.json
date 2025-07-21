@@ -5,5 +5,17 @@
       "source": "/(.*)",
       "destination": "/api"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api",
+      "headers": {
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Origin": "https://store-client-remix.vercel.app/",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "*"
+      }
+    }
   ]
 }
