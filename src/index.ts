@@ -17,7 +17,7 @@ import { productRouter } from './routes/product.js';
 import { userRouter } from './routes/user.js';
 
 const app = express();
-app.use( cors( { credentials: true, origin: [ process.env.FRONT_URI || '' ] } ) );
+app.use( cors( { credentials: true, origin: [ process.env.FRONT_URL || '' ] } ) );
 app.use( cookieParser() );
 app.use( express.json() );
 
@@ -33,7 +33,7 @@ app.use( '/order', orderRouter );
 
 app.use( errorMiddleware );
 
-mongoose.connect( process.env.MONGODB_URI || '' );
+mongoose.connect( process.env.MONGODB_URL || '' );
 
 app.listen( process.env.PORT, () => console.log( `Server is running on port ${process.env.PORT}` ) );
 

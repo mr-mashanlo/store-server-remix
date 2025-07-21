@@ -1,5 +1,6 @@
 import { del, put } from '@vercel/blob';
 import { RequestHandler } from 'express';
+import path from 'path';
 
 import { MediaServiceInterface } from '../services/media.js';
 import { ImageType } from '../types/image.js';
@@ -12,9 +13,11 @@ export class MediaController {
 
   create: RequestHandler = async ( req, res, next ) => {
     try {
-      const file = req.file;
-      const blob = await put( file!.originalname.toLowerCase(), file!.buffer, { access: 'public' } );
-      const document = await this.service.create( { name: file!.originalname.toLowerCase(), path: blob.url, alt: req.body.alt || '' } );
+      const { buffer, originalname } = req.file!;
+      const ext = path.extname( originalname );
+      const name = Date.now().toString( 36 ) + ext;
+      const { url } = await put( name, buffer, { access: 'public' } );
+      const document = await this.service.create( { name, path: url, alt: req.body.alt || '' } );
       res.json( document );
     } catch ( error ) {
       next( error );
