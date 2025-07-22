@@ -5,7 +5,7 @@ import path from 'path';
 import { MediaServiceInterface } from '../services/media.js';
 import { ImageType } from '../types/image.js';
 
-export class MediaController {
+export class VercelController {
 
   private service;
 
