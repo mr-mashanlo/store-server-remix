@@ -6,16 +6,27 @@
       "destination": "/api"
     }
   ],
-  "routes": [
+  "headers": [
     {
-      "src": "/(.*)",
-      "dest": "/api",
-      "headers": {
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Origin": "https://store-client-remix.vercel.app/",
-        "Access-Control-Allow-Methods": "*",
-        "Access-Control-Allow-Headers": "*"
-      }
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Credentials",
+          "value": "true"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://store-client-remix.vercel.app/"
+        }
+      ]
     }
   ]
 }
