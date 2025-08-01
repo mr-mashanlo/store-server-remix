@@ -24,12 +24,12 @@ app.use( express.json() );
 app.use( '/uploads', express.static( path.join( 'uploads' ) ) );
 app.use( '/media', mediaRouter );
 app.use( '/auth', authRouter );
-app.use( '/user', userRouter );
-app.use( '/address', addressRouter );
-app.use( '/product', productRouter );
-app.use( '/option', optionRouter );
-app.use( '/category', categoryRouter );
-app.use( '/order', orderRouter );
+app.use( '/users', userRouter );
+app.use( '/addresses', addressRouter );
+app.use( '/products', productRouter );
+app.use( '/options', optionRouter );
+app.use( '/categories', categoryRouter );
+app.use( '/orders', orderRouter );
 
 app.use( errorMiddleware );
 
